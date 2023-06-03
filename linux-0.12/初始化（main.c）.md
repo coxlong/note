@@ -1,5 +1,5 @@
 ---
-title: linux源码分析（一）--初始化程序
+title: linux源码分析（一）初始化程序
 date: 2023-05-07 19:00:00
 tags: 
 	- linux内核
