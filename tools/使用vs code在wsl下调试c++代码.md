@@ -10,6 +10,7 @@ categories: 其它
 
 按照[官方文档](https://docs.microsoft.com/zh-cn/windows/wsl/)安装子系统，建议使用WSL 2。WSL 2 使用最新、最强大的虚拟化技术在轻量级实用工具虚拟机 (VM) 中运行 Linux 内核。 但是，WSL 2 不是传统的 VM 体验。
 
+<!--more-->
 ![image-20210206213930600](https://images.coxlong.cn/img/20210206213937.png)
 
 除了跨操作系统文件系统的性能外，WSL 2 体系结构在多个方面都比 WSL 1 更具优势。

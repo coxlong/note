@@ -9,6 +9,7 @@ categories: 其它
 #### 1. 准备虚拟机
 
 使用VMware或hyper-v创建三台虚拟机（系统为Ubuntu18.04）。
+<!--more-->
 
 #### 2. 设置静态IP、修改主机名和hosts
 
@@ -35,15 +36,12 @@ categories: 其它
         gateway4: 172.22.160.1            #网关
         nameservers:                      #DNS
                 addresses: [114.114.114.114]
-  
+
   ```
 
   另外两台主机的IP分别为：172.22.160.102、172.22.160.103
 
   **注意：**IP设置成自己的，确保三台主机在同一局域网下，且能够相互ping通
-
-  
-
 - 修改主机名
 
   将3台主机名修改成不同的名称，分别为Hadoop101、Hadoop102、Hadoop103，便于区分。
@@ -51,9 +49,6 @@ categories: 其它
   ```shell
   vi /etc/hostname
   ```
-
-  
-
 - 修改hosts文件
 
   ```shell
@@ -166,8 +161,6 @@ root@Hadoop101:~# tar -zxvf server-jre-8u261-linux-x64.tar.gz
 root@Hadoop101:~# mv jdk1.8.0_261/ /usr/java/
 ```
 
-
-
 解压hadoop-3.2.1.tar.gz到/usr/hadoop
 
 ```shell
@@ -235,7 +228,7 @@ export JAVA_HOME=/usr/java/jdk1.8.0_261
     <name>dfs.namenode.http-address</name>
     <value>hadoop101:9870</value>
 </property>
-        
+      
 <!-- hdfs保存datanode当前数据的路径，默认值需要配环境变量，建议使用自己创建的路径，方便管理-->
 <property>
     <name>dfs.datanode.data.dir</name>
