@@ -6,7 +6,8 @@ tags:
 	- wsl
 categories: 其它
 ---
-#### 一、安装WSL 2
+
+#### 安装WSL 2
 
 按照[官方文档](https://docs.microsoft.com/zh-cn/windows/wsl/)安装子系统，建议使用WSL 2。WSL 2 使用最新、最强大的虚拟化技术在轻量级实用工具虚拟机 (VM) 中运行 Linux 内核。 但是，WSL 2 不是传统的 VM 体验。
 
@@ -15,9 +16,7 @@ categories: 其它
 
 除了跨操作系统文件系统的性能外，WSL 2 体系结构在多个方面都比 WSL 1 更具优势。
 
-
-
-#### 二、安装VS Code及插件
+#### 安装VS Code及插件
 
 在Windows上安装[VS Code](https://code.visualstudio.com/)并安装[远程开发扩展包](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)。
 
@@ -29,9 +28,7 @@ VS Code有很多插件，建议安装语言包和Visual Studio IntelliCode。
 
 ![image-20210206220058492](https://images.coxlong.cn/img/20210206220058.png)
 
-
-
-#### 三、安装编译器、调试器
+#### 安装编译器、调试器
 
 在子系统里面安装编译器gcc和g++以及调试器gdb。
 
@@ -41,9 +38,7 @@ sudo apt -y install gcc g++ gdb
 
 ![image-20210206221905641](https://images.coxlong.cn/img/20210206221905.png)
 
-
-
-#### 四、调试代码
+#### 调试代码
 
 在子系统里面输入以下命令打开VS Code。
 

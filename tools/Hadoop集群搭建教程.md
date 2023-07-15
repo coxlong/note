@@ -4,14 +4,15 @@ date: 2020-09-17 22:52:16
 tags: Hadoop
 categories: 其它
 ---
-### 一、环境安装
 
-#### 1. 准备虚拟机
+### 环境安装
+
+#### 准备虚拟机
 
 使用VMware或hyper-v创建三台虚拟机（系统为Ubuntu18.04）。
 <!--more-->
 
-#### 2. 设置静态IP、修改主机名和hosts
+#### 设置静态IP、修改主机名和hosts
 
 - 设置静态IP
 
@@ -36,7 +37,7 @@ categories: 其它
         gateway4: 172.22.160.1            #网关
         nameservers:                      #DNS
                 addresses: [114.114.114.114]
-
+  
   ```
 
   另外两台主机的IP分别为：172.22.160.102、172.22.160.103
@@ -63,9 +64,9 @@ categories: 其它
   172.22.160.103	Hadoop103
   ```
 
-#### 3. 配置ssh
+#### 配置ssh
 
-##### 1. 安装ssh
+##### 安装ssh
 
 检查是否安装了ssh
 
@@ -82,7 +83,7 @@ root@Hadoop101:~# ps -e | grep ssh
 apt-get install openssh-server
 ```
 
-##### 2. 允许root通过ssh登录
+##### 允许root通过ssh登录
 
 修改sshd_config文件
 
@@ -101,7 +102,7 @@ PermitRootLogin yes
 #MaxSessions 10
 ```
 
-##### 3. 设置免密登录
+##### 设置免密登录
 
 在主机Hadoop101上生成密钥公钥对
 
@@ -116,7 +117,7 @@ root@Hadoop101:~# ssh-copy-id hadoop102
 root@Hadoop101:~# ssh-copy-id hadoop103
 ```
 
-#### 4. 编写分发脚本
+#### 编写分发脚本
 
 一般情况下，服务器的数量比较多，在每台服务器上分别配置Hadoop不太现实，rsync可以将文件同步到其他服务器，以下脚本可以群发
 
@@ -151,7 +152,7 @@ done
 
 将脚本放在/usr/sbin目录下，并赋予777权限
 
-#### 5. 安装jre和Hadoop
+#### 安装jre和Hadoop
 
 解压server-jre-8u261-linux-x64.tar.gz到/usr/java
 
@@ -183,11 +184,11 @@ export HADOOP_HOME=/usr/hadoop/hadoop-3.2.1
 export PATH=$PATH:${JAVA_HOME}/bin:${HADOOP_HOME}/bin
 ```
 
-### 二、配置Hadoop集群
+### 配置Hadoop集群
 
 切换到目录/usr/hadoop/hadoop-3.2.1/etc/hadoop/，修改配置文件
 
-#### 1. hadoop-env.sh
+#### hadoop-env.sh
 
 在该文件中添加JAVA_HOME
 
@@ -197,7 +198,7 @@ export PATH=$PATH:${JAVA_HOME}/bin:${HADOOP_HOME}/bin
 export JAVA_HOME=/usr/java/jdk1.8.0_261
 ```
 
-#### 2. core-site.xml
+#### core-site.xml
 
 ```xml
 <!-- 指定HDFS中NameNode的地址 -->
@@ -211,10 +212,9 @@ export JAVA_HOME=/usr/java/jdk1.8.0_261
     <name>hadoop.tmp.dir</name>
     <value>/usr/hadoop/hadoop-3.2.1/tmp</value>
 </property>
-
 ```
 
-#### 3. hdfs-site.xml
+#### hdfs-site.xml
 
 ```xml
 <!-- hdfs存储数据的副本数量（避免一台宕机），可以不设置，默认值是3 -->
@@ -243,7 +243,7 @@ export JAVA_HOME=/usr/java/jdk1.8.0_261
  
 ```
 
-#### 4. yarn-site.xml
+#### yarn-site.xml
 
 ```xml
 <!-- 必须配置指定YARN的老大（ResourceManager）在哪一台主机 -->
@@ -259,7 +259,7 @@ export JAVA_HOME=/usr/java/jdk1.8.0_261
 </property>
 ```
 
-#### 5. mapred-site.xml
+#### mapred-site.xml
 
 ```xml
 <!-- 必须设置，mapreduce程序使用的资源调度平台，默认值是local，若不改就只能单机运行，不会到集群上了 -->
@@ -284,7 +284,7 @@ export JAVA_HOME=/usr/java/jdk1.8.0_261
 </property>
 ```
 
-#### 6. 配置workers
+#### 配置workers
 
 配置需要启动datanode节点的主机
 
@@ -294,7 +294,7 @@ hadoop102
 hadoop103
 ```
 
-#### 7. 分发配置文件
+#### 分发配置文件
 
 将配置好的文件分发到主机hadoop102和hadoop103上
 
@@ -302,7 +302,7 @@ hadoop103
 xsync /usr/hadoop/hadoop-3.2.1/etc/hadoop/
 ```
 
-#### 8. 启动集群
+#### 启动集群
 
 在/hadoop/sbin路径下，将以下参数添加到start-dfs.sh和stop-dfs.sh的顶部
 
